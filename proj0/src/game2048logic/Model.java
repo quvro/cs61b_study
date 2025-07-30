@@ -160,7 +160,7 @@ public class Model {
         int size = board.size();
         for (int i = y + 1; i < size; i ++) {
             if (tile(x, i) != null) {
-                if (tile(x, i).value() == currTile.value()) {
+                if (tile(x, i).value() == currTile.value() && !tile(x, i).wasMerged() && !currTile.wasMerged()) {
                     targetY ++;
                     break;
                 } else {
@@ -180,6 +180,12 @@ public class Model {
      * */
     public void tiltColumn(int x) {
         // TODO: Task 7. Fill in this function.
+        int size = board.size();
+        for (int i = size - 1; i >= 0; i --) {
+            if (tile(x, i) != null) {
+                moveTileUpAsFarAsPossible(x, i);
+            }
+        }
     }
 
     public void tilt(Side side) {
