@@ -85,6 +85,14 @@ public class Model {
      * */
     public boolean emptySpaceExists() {
         // TODO: Task 2. Fill in this function.
+        int size = board.size();
+        for (int x = 0; x < size; x ++) {
+            for (int y = 0; y < size; y ++) {
+                if (tile(x, y) == null) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
@@ -95,6 +103,14 @@ public class Model {
      */
     public boolean maxTileExists() {
         // TODO: Task 3. Fill in this function.
+        int size = board.size();
+        for (int x = 0; x < size; x ++) {
+            for (int y = 0; y < size; y ++) {
+                if (tile(x, y) != null && tile(x, y).value() == MAX_PIECE) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
