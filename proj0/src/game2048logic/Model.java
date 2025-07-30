@@ -157,6 +157,20 @@ public class Model {
         int targetY = y;
 
         // TODO: Tasks 5, 6, and 10. Fill in this function.
+        int size = board.size();
+        for (int i = y + 1; i < size; i ++) {
+            if (tile(x, i) != null) {
+                if (tile(x, i).value() == currTile.value()) {
+                    targetY ++;
+                    break;
+                } else {
+                    break;
+                }
+            }
+            targetY ++;
+        }
+
+        board.move(x, targetY, currTile);
     }
 
     /** Handles the movements of the tilt in column x of the board
