@@ -162,6 +162,7 @@ public class Model {
             if (tile(x, i) != null) {
                 if (tile(x, i).value() == currTile.value() && !tile(x, i).wasMerged() && !currTile.wasMerged()) {
                     targetY ++;
+                    score += myValue * 2;
                     break;
                 } else {
                     break;
@@ -170,7 +171,9 @@ public class Model {
             targetY ++;
         }
 
-        board.move(x, targetY, currTile);
+        if (targetY != y) {
+            board.move(x, targetY, currTile);
+        }
     }
 
     /** Handles the movements of the tilt in column x of the board
@@ -190,6 +193,12 @@ public class Model {
 
     public void tilt(Side side) {
         // TODO: Tasks 8 and 9. Fill in this function.
+        int size = board.size();
+        board.setViewingPerspective(side);
+        for (int i = 0; i < size; i ++) {
+            tiltColumn(i);
+        }
+        board.setViewingPerspective(Side.NORTH);
     }
 
     /** Tilts every column of the board toward SIDE.
