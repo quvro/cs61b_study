@@ -2,29 +2,50 @@ import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 
 public class Percolation {
-    // TODO: Add any necessary instance variables.
+
+    WeightedQuickUnionUF ufBoard;
+    Block[][] board;
+    int openSites;
+
+    private class Block {
+        int x, y;
+        boolean isOpen;
+        boolean isFull;
+
+        public Block(int col, int row){
+            x = col;
+            y = row;
+            isOpen = false;
+            isFull = false;
+        }
+    }
 
     public Percolation(int N) {
         // TODO: Fill in this constructor.
+        ufBoard = new WeightedQuickUnionUF(N * N);
+        board = new Block[N][N];
+        openSites = 0;
     }
 
     public void open(int row, int col) {
         // TODO: Fill in this method.
+        Block cur = board[row][col];
+        if (!cur.isOpen) {
+            cur.isOpen = true;
+            openSites ++;
+        }
     }
 
     public boolean isOpen(int row, int col) {
-        // TODO: Fill in this method.
-        return false;
+        return board[row][col].isOpen;
     }
 
     public boolean isFull(int row, int col) {
-        // TODO: Fill in this method.
-        return false;
+        return board[row][col].isFull;
     }
 
     public int numberOfOpenSites() {
-        // TODO: Fill in this method.
-        return 0;
+        return openSites;
     }
 
     public boolean percolates() {
@@ -33,6 +54,5 @@ public class Percolation {
     }
 
     // TODO: Add any useful helper methods (we highly recommend this!).
-    // TODO: Remove all TODO comments before submitting.
 
 }
